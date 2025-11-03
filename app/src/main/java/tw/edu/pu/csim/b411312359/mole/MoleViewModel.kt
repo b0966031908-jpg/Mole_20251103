@@ -46,7 +46,6 @@ class MoleViewModel: ViewModel() {
         // 在 ViewModel 初始化時啟動一個協程來自動增加計數器
         startCounting()
     }
-
     private fun startCounting() {
         viewModelScope.launch {
             while (stay < 60) { // 無限循環，每秒增加一次
