@@ -44,19 +44,20 @@ class MainActivity : ComponentActivity() {
 fun MoleScreen(moleViewModel: MoleViewModel = viewModel()) {
     val counter = moleViewModel.counter
     //var counter by rememberSaveable { mutableLongStateOf(0) }
+    val stay = moleViewModel.stay
 
     Box (
         modifier = Modifier.fillMaxSize(),
         Alignment.Center
     ) {
-        Text(counter.toString())
+        Text("分數: $counter \n時間: $stay")
     }
 
     Image(
         painter = painterResource(id = R.drawable.mole),
         contentDescription = "地鼠",
         modifier = Modifier
-            .offset { IntOffset(60, 600) }
+            .offset { IntOffset(600, 800) }
             .size(150.dp)
             .clickable { moleViewModel.incrementCounter() }
     )
