@@ -11,7 +11,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
+
 class MoleViewModel: ViewModel() {
+    var isGameActive by mutableStateOf(true)
+        private set
     var counter by mutableLongStateOf(0)
         private set  //表示只有 ViewModel 內部可以修改它
 
@@ -33,7 +37,9 @@ class MoleViewModel: ViewModel() {
     // DP-to-pixel轉換
 
     fun incrementCounter() {
-        counter++
+        if (isGameActive) {
+            counter++
+        }
     }
     
     init {
@@ -43,11 +49,15 @@ class MoleViewModel: ViewModel() {
 
     private fun startCounting() {
         viewModelScope.launch {
-            while (true) { // 無限循環，每秒增加一次
+            while (stay < 60) { // 無限循環，每秒增加一次
                 delay(1000L)
                 stay++ // 計數器加 1，這會自動觸發 UI 更新
-                moveMole()
+                if (isGameActive) {
+                    moveMole()
+                }
             }
+            // 60 秒時間到，設定遊戲為非活躍狀態
+            isGameActive = false
         }
     }
 

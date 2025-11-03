@@ -59,7 +59,7 @@ fun MoleScreen(moleViewModel: MoleViewModel = viewModel()) {
                            },
         Alignment.Center
     ) {
-        Text("分數: $counter \n時間: $stay")
+        Text("打地鼠遊戲(楊承智) \n分數: $counter \n時間: $stay")
     }
 
     Image(
@@ -69,5 +69,6 @@ fun MoleScreen(moleViewModel: MoleViewModel = viewModel()) {
             .offset { IntOffset(moleViewModel.offsetX, moleViewModel.offsetY) }
             .size(moleSizeDp)
             .clickable { moleViewModel.incrementCounter() }
+
     )
 }
